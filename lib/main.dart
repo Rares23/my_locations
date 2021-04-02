@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
       title: 'My Locations',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        accentColor: Colors.amber,
       ),
       home: HomeScreen(),
     );
