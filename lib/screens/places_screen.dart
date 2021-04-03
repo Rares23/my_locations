@@ -24,29 +24,38 @@ class PlacesScreen extends StatelessWidget {
           )
         ],
       ),
-      body: Consumer<Places>(
-        builder: (context, places, child) {
-          if (places.places.isEmpty) {
-            return child;
-          } else {
-            return ListView.builder(
-                itemCount: places.places.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: CircleAvatar(
-                      backgroundImage: FileImage(places.places[index].image),
-                    ),
-                    title: Text(places.places[index].title),
-                    onTap: () {
-                      // go to detail page
+      body: FutureBuilder(
+        future: Provider.of<Places>(context, listen: false).fetchAndSetPlaces(),
+        builder: (context, snapshot) =>
+            snapshot.connectionState == ConnectionState.waiting
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : Consumer<Places>(
+                    builder: (context, places, child) {
+                      if (places.places.isEmpty) {
+                        return child;
+                      } else {
+                        return ListView.builder(
+                            itemCount: places.places.length,
+                            itemBuilder: (context, index) {
+                              return ListTile(
+                                leading: CircleAvatar(
+                                  backgroundImage:
+                                      FileImage(places.places[index].image),
+                                ),
+                                title: Text(places.places[index].title),
+                                onTap: () {
+                                  // go to detail page
+                                },
+                              );
+                            });
+                      }
                     },
-                  );
-                });
-          }
-        },
-        child: Center(
-          child: Text('No places yet'),
-        ),
+                    child: Center(
+                      child: Text('No places yet'),
+                    ),
+                  ),
       ),
     );
   }

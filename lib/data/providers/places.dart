@@ -20,11 +20,24 @@ class Places with ChangeNotifier {
     );
 
     _places.add(newPlace);
-    notifyListeners();
     DB.insert('places', {
       'id': newPlace.id,
       'title': newPlace.title,
       'image': newPlace.image.path
     });
+    notifyListeners();
+  }
+
+  Future<void> fetchAndSetPlaces() async {
+    final dataList = await DB.getData('places');
+    _places = dataList
+        .map((item) => Place(
+              id: item['id'],
+              title: item['title'],
+              image: File(item['image']),
+              location: null,
+            ))
+        .toList();
+    notifyListeners();
   }
 }
