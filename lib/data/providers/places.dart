@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:my_locations/data/db/db.dart';
 import 'package:my_locations/data/models/place.dart';
 
 class Places with ChangeNotifier {
@@ -20,5 +21,10 @@ class Places with ChangeNotifier {
 
     _places.add(newPlace);
     notifyListeners();
+    DB.insert('places', {
+      'id': newPlace.id,
+      'title': newPlace.title,
+      'image': newPlace.image.path
+    });
   }
 }
