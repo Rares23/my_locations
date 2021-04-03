@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LocationDetailsScreen extends StatelessWidget {
-  static const route = '/location';
+class PlaceDetailsScreen extends StatelessWidget {
+  static const route = '/place';
 
   @override
   Widget build(BuildContext context) {
