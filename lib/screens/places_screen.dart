@@ -37,6 +37,9 @@ class PlacesScreen extends StatelessWidget {
                       backgroundImage: FileImage(places.places[index].image),
                     ),
                     title: Text(places.places[index].title),
+                    onTap: () {
+                      // go to detail page
+                    },
                   );
                 });
           }
