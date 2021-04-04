@@ -55,6 +55,10 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                       height: 10,
                     ),
                     ImageInput(_selectImage),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    LocationInput(),
                   ],
                 ),
               ),
@@ -73,10 +77,6 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
               elevation: 0,
             ),
           ),
-          SizedBox(
-            height: 10,
-          ),
-          LocationInput(),
         ],
       ),
     );
